@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Container from "./components/Container";
+import Deck from "./components/Deck";
+import { useState } from "react";
+import Library from "./tarot-images";
 
 function App() {
+  const [deck, setDeck] = useState(Library.cards);
+  const [cards, setCards] = useState([]);
+
+  const RANDINT = Math.floor(Math.random() * deck.length);
+
+  function drawCard(e) {
+    let choice = deck[RANDINT];
+
+    setCards((cards) => {
+      return [...cards, { ...choice }];
+    });
+    setDeck((deck) => {
+      let newDeck = deck.filter((card) => card !== choice);
+      return [...newDeck];
+    });
+  }
+
+  function handleClick() {
+    drawCard(deck);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="deck" onClick={handleClick}>
+        {deck.length} cards remaining
+      </div>
+      <Container cards={cards} />
     </div>
   );
 }

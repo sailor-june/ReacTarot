@@ -1,38 +1,62 @@
-.App {
+:root {
+  --deck-shadow: 1px 1px white, 2px 2px gray, 3px 3px white, 4px 4px,
+    5px 5px gray, 6px 6px white, 7px 7px gray, 8px 8px, 9px 9px gray,
+    10px 10px white, 11px 11px gray, 12px 12px, -1px -1px;
+}.App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+}
+.deck {
+  background-color: #ec3608;
+  box-shadow: var(--deck-shadow);
+  border-radius: 15px;
+  height: 336px;
+  width: 200px;
+  
+}
+.card{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  background-color: #f6bb33;
+  box-shadow: 10px 10px inset #e9e9e9, -10px -10px inset #e9e9e9, 2px 2px 4px gray, -2px -2px 4px #e9e9e9;
+  border-radius: 15px;
+  border-style: solid inset;
+  border-width: 1px;
+  height: 25.2rem;;
+  width: 15rem;
+  overflow: hidden;
+
 }
 
-.App-link {
-  color: #61dafb;
+
+.alphacard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  background-color: #3df633;
+  box-shadow: 10px 10px inset #e9e9e9, -10px -10px inset #e9e9e9, 2px 2px 4px gray, -2px -2px 4px #e9e9e9;
+  border-radius: 15px;
+  border-style: solid inset;
+  border-width: 1px;
+  height: 25.2rem;
+  width: 15rem;
+  object-fit: scale-down;
+
+}
+.alphacard img{
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card img{
+  height: 100%;
+}
+
+.container{
+  display: flex;
 }
