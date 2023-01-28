@@ -1,37 +1,30 @@
-import "./App.css";
-import Container from "./components/Container";
-import Deck from "./components/Deck";
-import { useState } from "react";
+import "./App.scss";
+
+import Diary from "./pages/Diary";
+import Reading from "./pages/Reading";
+import { useState, useEffect } from "react";
 import Library from "./tarot-images";
+import { Route, Routes } from "react-router-dom";
+import Entry from "./pages/Entry";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+import Header from "./components/Header";
 
 function App() {
-  const [deck, setDeck] = useState(Library.cards);
-  const [cards, setCards] = useState([]);
+  const [user, setUser] = useState(null);
 
-  const RANDINT = Math.floor(Math.random() * deck.length);
-
-  function drawCard(e) {
-    let choice = deck[RANDINT];
-
-    setCards((cards) => {
-      return [...cards, { ...choice }];
-    });
-    setDeck((deck) => {
-      let newDeck = deck.filter((card) => card !== choice);
-      return [...newDeck];
-    });
-  }
-
-  function handleClick() {
-    drawCard(deck);
-  }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => setUser(user));
+  }, []);
 
   return (
     <div className="App">
-      <div className="deck" onClick={handleClick}>
-        {deck.length} cards remaining
-      </div>
-      <Container cards={cards} />
+      <Header user= {user} />
+      <Routes>
+        <Route path="/draw" element={<Reading user={user} library={Library} />} />
+        <Route path="/diary" element={<Diary user={user}/>} />
+        <Route path="/diary/:id" element={<Entry user={user}/>} />
+      </Routes>
     </div>
   );
 }
