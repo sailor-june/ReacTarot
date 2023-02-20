@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-import EntryCard from '../components/EntryCard'
 
+import EntryCard from '../components/EntryCard'
+import Signup from './Signup';
 
 
 
@@ -12,7 +13,7 @@ function Diary(props) {
   
 
 
-const getDiary = async() => {
+ const getDiary = async() => {
   const token= await props.user.getIdToken()
   const response = await fetch(URL, {
     method: 'GET',
@@ -22,16 +23,22 @@ const getDiary = async() => {
   setEntries(data);            
 }
 
-props.user? useEffect(() => {
-  getDiary();
-},[props.user]):setEntries(null)
+ useEffect(() => {
+ props.user? getDiary():setEntries(null)
+},[props.user])
 
 
 const loaded = () => {
-  return entries.map((entry) => (
-    <EntryCard entry={ entry }/>
-  ));
-};
+  if (props.user){ 
+    return(entries.map((entry) => (
+      <EntryCard entry={ entry }/>
+  )))
+}else{
+  return (
+    <Signup />
+  )
+}}
+;
 
 const loading = () => {
   return <h1>Loading...</h1>;

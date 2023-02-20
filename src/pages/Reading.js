@@ -6,42 +6,66 @@ import React from "react";
 
 function Reading(props) {
   const [deck, setDeck] = useState(props.library.cards);
-  const [cards, setCards] = useState([]);
 
-  const RANDINT = Math.floor(Math.random() * deck.length);
+
+  const [cards, setCards] = useState([]);
+  
+
+
+  
+  
+  
+  
+  
+  
+  
   function draw() {
+    const RANDINT = Math.floor(Math.random() * deck.length);
     let choice = deck[RANDINT];
 
     //add card to reading
     setCards((prevState) => {
       return [...prevState, { ...choice }];
     });
+
+
+    // add class to trigger animation for newest card
+
+
+  // remove class after animation is complete
+  
+
+  
     ///////////////remove chosen card from deck
     setDeck((deck) => {
       let newDeck = deck.filter((card) => card !== choice);
       return [...newDeck];
     });
   }
-
+const URL="http://localhost:4000"
 
 //////POST ENTRY
-const handleSubmit= async(event)=>{
-  event.preventDefault()
+const createItem= async(reading)=>{
+  if(!props.user) return;
   
-  if (props.user){
   const token = await props.user.getIdToken()
-  await fetch("/diary",{ 
+  console.log(await fetch(URL +'/diary' ,{ 
       method: 'POST',
       headers: {
       'Content-type': "application/json",
       'Authorization' :'Bearer '+token },
-      body:JSON.stringify({
-    
-      })
+      body: JSON.stringify(
+            {uid: '',
+              cards : cards}
+
+      )
   }
-  )}}
+  ))}
   return (
     <>
+      <div className="navbox">
+        <button onClick={createItem}>save this reading</button>
+      </div>
       <div className="deck" onClick={draw} />
       <Container cards={cards} />
     </>
