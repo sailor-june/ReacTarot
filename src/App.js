@@ -12,6 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/diary" element={<Diary user={user}/>} />
         <Route path="/diary/:id" element={<Entry user={user}/>} />
       </Routes>
+      <Footer />
     </div>
   );
 }

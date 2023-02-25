@@ -7,7 +7,7 @@ function EntryCard(props) {
     <div className='entry'>
         
         <Link to={`/diary/${props.entry._id}`} data={props.entry}>
-             <li>{cards[0].number} of {cards[0].suit}</li>
+             <li></li>
                   </Link>
         </div>
   )

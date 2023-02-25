@@ -2,33 +2,43 @@
   --deck-shadow: 1px 1px white, 2px 2px gray, 3px 3px white, 4px 4px,
     5px 5px gray, 6px 6px white, 7px 7px gray, 8px 8px, 9px 9px gray,
     10px 10px white, 11px 11px gray, 12px 12px, -1px -1px;
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
-body{
-display: flex;
-background-color: #f6bb33;
-width: 100vw;
-
+body {
+  transition: all 2s ease;
+  display: flex;
+  background-color: #f6bb33;
+  width: 100vw;
 }
 .App {
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
- flex-direction: column;
+  flex-direction: column;
   width: 100vw;
 }
 .deck {
+  margin: 3rem;
   background-color: #ec3608;
   box-shadow: var(--deck-shadow);
   border-radius: 15px;
   height: 336px;
   width: 200px;
-  
 }
-.card{
+.upper{
+  display: flex
+}
+.navbox{
+  align-self: flex-end;
+  justify-self: center;
+  border-width: 3px;
+  border-style: groove;
+
+}
+.card {
   position: relative;
   margin: 1rem;
   display: flex;
@@ -36,54 +46,50 @@ width: 100vw;
   flex-direction: column;
   align-items: center;
   background-color: #f6bb33;
-  box-shadow: 10px 10px inset #e9e9e9, -10px -10px inset #e9e9e9, 2px 2px 4px gray, -2px -2px 4px #e9e9e9;
+  box-shadow: 10px 10px inset #e9e9e9, -10px -10px inset #e9e9e9,
+    2px 2px 4px gray, -2px -2px 4px #e9e9e9;
   border-radius: 15px;
   border-style: solid inset;
   border-width: 1px;
-  height: 25.2rem;;
+  height: 25.2rem;
   width: 15rem;
-  
-img{
-  position: absolute;
-  will-change: transform;
-  height: 24rem;
-  border-radius: 8px;
-  transition: transform 2s;
-  
-}
-img:hover{
-  transition: transform 2s;
-  transform: translateY(-2rem);
-  
-}
 
-.questions {
-  box-shadow: 2px 2px inset #e9e9e9, 2px 2px inset #e9e9e9, 2px 2px 4px gray, -2px -2px 4px #e9e9e9;
-  border-radius: 12px;
-  width: 15rem;
-  background-color: #ec3608;
-  animation: fadeIn 1s ease;
-  text-shadow: 1px 1px #e9e9e9, -1px -1px grey;
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  
-  &.fade-out {
-    animation: fadeOut 1s ease;
+  img {
+    position: absolute;
+    will-change: transform;
+    height: 24rem;
+    border-radius: 8px;
+    transition: transform 2s;
+  }
+  img:hover {
+    transition: all 2s ease;
+    transform: translateY(-2rem);
+  }
+
+  .questions {
+    box-shadow: 2px 2px inset #e9e9e9, 2px 2px inset #e9e9e9, 2px 2px 4px gray,
+      -2px -2px 4px #e9e9e9;
+    border-radius: 12px;
+    width: 15rem;
+    background-color: #ec3608;
+    will-change: opacity;
+    animation: fadeIn 1s ease;
+    color: -1px -1px grey;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    transition: opacity 2s ease;
+    opacity: 0;
+  }
+
+  &.new-card {
+    opacity: 0;
+    transition: transform 2s ease;
+    animation: fadeIn 1s ease-in;
   }
 }
 
-&.new-card {
-  opacity: 0;
-  transition: transform 2s ease;
-  animation: fadeIn 1s ease-in;
-}
-}
-
-
-
-
-.entry{
+.entry {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -100,17 +106,25 @@ img:hover{
     box-shadow: 2px 2px 5px rgb(47, 79, 81), -2px -2px 5px rgb(139, 232, 235);
   }
 }
+.card:hover .questions {
+  opacity: 1;
+  transition: 2s ease;
+}
 
-.container{
+.container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   transition: all 2s ease;
-  width: 100vw;
+  width: 95vw;
+  min-height: 40vh;
+  border-style: ridge;
+  border-width: 3px;
+  will-change: height;
+  transition: all 2s;
 }
 .card .new-card {
-  
   opacity: 0;
   transition: transform 2s ease;
   animation: fadeIn 2s ease;
@@ -118,7 +132,6 @@ img:hover{
 
 @keyframes fadeIn {
   0% {
-    
     opacity: 0;
     transform: translateY(-50%);
   }
@@ -127,6 +140,7 @@ img:hover{
     transform: translateY(0%);
   }
 }
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
