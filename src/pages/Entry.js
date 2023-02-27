@@ -1,14 +1,22 @@
-import React from 'react'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
 
-function Entry(props){
-  const data= props.data.entry
-const [entry, setEntry]=useState({data})
-  return (
-    <div>{entry}
-    </div>
-  )
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import Card from '../components/Card';
+
+function Entry(props) {
+  const { id } = useParams();
+  const entry = props.entries.find((entry) => entry._id === id);
+
+  if (!entry) {
+    return <div>Loading...</div>;
+  }
+
+  const cardList = entry.cards.map((card) => (
+    <Card key={card} card={props.library.cards.find((item) => item.name === card)} />
+  ));
+
+  return <div>{cardList}</div>;
 }
 
-export default Entry
+export default Entry;
+

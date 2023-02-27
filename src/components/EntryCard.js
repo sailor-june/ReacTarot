@@ -1,15 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 function EntryCard(props) {
-  const cards = {...props.entry.cards}
-  console.log(cards)
-  return (
-    <div className='entry'>
+
+  
+  console.log(props.entry)
+  return (<Link to={`/diary/${props.entry._id}`} >
+    <div className='entrycard'>
         
-        <Link to={`/diary/${props.entry._id}`} data={props.entry}>
-             <li></li>
-                  </Link>
-        </div>
+        
+        <img src={`http://localhost:4000/cards/${props.img}`} />
+                  
+        {props.entry.created_at}
+        </div></Link>
   )
 }
 

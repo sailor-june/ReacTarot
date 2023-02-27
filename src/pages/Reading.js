@@ -18,9 +18,6 @@ function Reading(props) {
       return [...prevState, { ...choice }];
     });
 
-    // add class to trigger animation for newest card
-
-    // remove class after animation is complete
 
     ///////////////remove chosen card from deck
     setDeck((deck) => {
