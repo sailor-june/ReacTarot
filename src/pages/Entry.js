@@ -15,7 +15,7 @@ function Entry(props) {
     <Card key={card} card={props.library.cards.find((item) => item.name === card)} />
   ));
 
-  return <div>{cardList}</div>;
+  return <div className='container'>{cardList}</div>;
 }
 
 export default Entry;

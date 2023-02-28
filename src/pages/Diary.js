@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import EntryCard from '../components/EntryCard'
 import Signup from './Signup';
 
@@ -8,7 +8,7 @@ import Signup from './Signup';
 
 
 function Diary(props) {
-  const library={...props.library.cards}
+  
   const entries= props.entries || []
   
 
@@ -42,10 +42,11 @@ function Diary(props) {
     return <h1>Loading...</h1>;
   };
 
-  return (
+  return (<>
     <div className='container'>
       {entries ? loaded() : loading()}
     </div>
+    </>
   )
 }
 

@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react'
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, } from "react-router-dom";
 
-
+import Home from '../pages/Home';
 import Diary from "../pages/Diary";
 import Entry from "../pages/Entry";
 import Reading from "../pages/Reading";
@@ -34,6 +34,7 @@ function Main(props) {
     <div className="App">
       <Header user= {user} />
       <Routes>
+        <Route path="/" element={<Home user={user}/>}/>
         <Route path="/signup" element={<Signup />}/>
         <Route path="/draw" element={<Reading user={user} library={Library} />} />
         <Route path="/diary" element={<Diary user={user} library={Library} entries={entries} getDiary={getDiary}/>} />

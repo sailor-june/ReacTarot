@@ -1,7 +1,6 @@
 import Container from "../components/Container";
 import { useState } from "react";
-import Library from "../tarot-images";
-import { json, Link, redirect, useNavigate } from "react-router-dom";
+
 import React from "react";
 
 function Reading(props) {
@@ -47,6 +46,7 @@ function Reading(props) {
     <><div className="Upper">
       <div className="navbox">
         <button onClick={createItem}>save this reading</button>
+        
       </div>
       </div>
       <div className="deck" onClick={draw} />
