@@ -1,43 +1,41 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React, { useState, useEffect } from "react";
 
 function Card(props) {
   const [isShown, setIsShown] = useState(false);
+  const [isNewCard, setIsNewCard] = useState(false);
+
+  useEffect(() => {
+    setIsNewCard(true);
+    setTimeout(() => {
+      setIsNewCard(false);
+    }, 1000);
+  }, [props.index]);
 
   return (
     <div
-      className="card"
+      className={`card ${isShown ? "shown" : ""} ${
+        isNewCard ? "new-card" : ""
+      }`}
       onMouseEnter={() => setIsShown(true)}
-      onMouseLeave={() => setIsShown(false)}
+      onMouseLeave={() =>
+        setTimeout(() => {
+          setIsShown(false);
+        }, 1000)
+      }
     >
-      
-      {/* <CSSTransition
-      in={isShown}
-      timeout={300} */}
-      {/* </div>classNames="slide-card"> */}
-      <img src={`http://localhost:4000/cards/${props.card.img}`} />
-      {/* </CSSTransition>*/}
-      <TransitionGroup> 
-        {isShown && (
-          <CSSTransition
-            in={isShown}
-            timeout={500}
-            classNames="fade-questions"
-          >
-            <div className="questions">
-              {
-                props.card.questions[
-                  Math.floor(Math.random() * props.card.questions.length)
-                ]
-              }
-            </div>
-          </CSSTransition>
-        )}
-      </TransitionGroup>
+      <img src={`http://fortune-diary.herokuapp.com/cards/${props.card.img}`} alt={`${props.card.name}`} />
+
+      {isShown && (
+        <div className="questions">
+          {
+            props.card.questions[
+              Math.floor(Math.random() * props.card.questions.length)
+            ]
+          }
+        </div>
+      )}
     </div>
   );
 }
 
 export default Card;
-

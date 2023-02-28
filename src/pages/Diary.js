@@ -1,46 +1,52 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import EntryCard from '../components/EntryCard'
+import Signup from './Signup';
+
 
 
 
 
 function Diary(props) {
-  const [entries, setEntries] = useState(null);
-  const URL = "http://localhost:4000/diary"
   
+  const entries= props.entries || []
   
 
 
-const getDiary = async() => {
-  const token= await props.user.getIdToken()
-  const response = await fetch(URL, {
-    method: 'GET',
-    headers: {'Authorization':'Bearer '+token}
-  });
-  const data = await response.json();
-  setEntries(data);            
-}
-
-props.user? useEffect(() => {
-  getDiary();
-},[props.user]):setEntries(null)
 
 
-const loaded = () => {
-  return entries.map((entry) => (
-    <EntryCard entry={ entry }/>
-  ));
-};
+  const loaded = () => {
+    if (entries && entries.length > 0) {
+      return entries.map((entry) => (
+        <EntryCard
+          key={entry._id}
+          entry={entry}
+          img={props.library.cards.find((card) => card.name === entry.cards[0]).img}
+        />
+      ));
+    } else {
+      return (
+        <>
+          <h2>No entries found</h2>
+          {props.user && <Link to="/draw">Create new entry</Link>}
+        </>
+      );
+    }
+  };
+  const loading = () => {
+    if (!props.user){
+      return(
+        <Signup />
+      )
+    }
+    return <h1>Loading...</h1>;
+  };
 
-const loading = () => {
-  return <h1>Loading...</h1>;
-};
-
-  return (
+  return (<>
     <div className='container'>
       {entries ? loaded() : loading()}
     </div>
+    </>
   )
 }
 
