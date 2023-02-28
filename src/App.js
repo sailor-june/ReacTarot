@@ -15,9 +15,9 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, async (auth_user) =>{
     setUser(auth_user)
-    if (auth_user.metadata.creationTime=== auth_user.metadata.lastSignInTime){ navigate('./signup')}
+    if (auth_user.metadata.creationTime=== auth_user.metadata.lastSignInTime){ useNavigate('./signup')}
   });
-  }, []);
+  }, [user]);
 
 
   return (

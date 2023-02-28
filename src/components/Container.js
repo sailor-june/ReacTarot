@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import { useEffect, useState } from "react";
+
 
 function Container({ cards }) {
   return (
