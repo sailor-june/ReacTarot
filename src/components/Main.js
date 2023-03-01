@@ -12,7 +12,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 function Main(props) {
   const user=props.user
-  const URL = "http://localhost:4000/diary"
+  const URL = "http://fortune-diary.herokuapp.com/diary"
   const [entries, setEntries] = useState([]);
 
   const getDiary = async() => {
