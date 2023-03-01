@@ -12,12 +12,12 @@ import Header from "./Header"
 import Footer from "./Footer"
 function Main(props) {
   const user=props.user
-  const URL = "http://fortune-diary.herokuapp.com/diary"
+  const URL = "https://fortune-diary.herokuapp.com"
   const [entries, setEntries] = useState([]);
 
   const getDiary = async() => {
     const token= await props.user.getIdToken()
-    const response = await fetch(URL, {
+    const response = await fetch(URL+"/diary", {
       method: 'GET', 
       headers: {'Authorization':'Bearer '+token}
     });

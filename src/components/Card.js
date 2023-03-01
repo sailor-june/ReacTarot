@@ -23,7 +23,7 @@ function Card(props) {
         }, 1000)
       }
     >
-      <img src={`http://fortune-diary.herokuapp.com/cards/${props.card.img}`} alt={`${props.card.name}`} />
+      <img src={`https://fortune-diary.herokuapp.com/cards/${props.card.img}`} alt={`${props.card.name}`} />
 
       {isShown && (
         <div className="questions">

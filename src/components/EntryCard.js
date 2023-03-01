@@ -8,7 +8,7 @@ function EntryCard(props) {
     <div className='entrycard'>
         
         
-        <img src={`http://fortune-diary.herokuapp.com/cards/${props.img}`} alt={props.entry.created_at} />
+        <img src={`https://fortune-diary.herokuapp.com/cards/${props.img}`} alt={props.entry.created_at} />
                   
         {props.entry.created_at}
         </div></Link>
