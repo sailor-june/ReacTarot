@@ -24,7 +24,7 @@ function Reading(props) {
       return [...newDeck];
     });
   }
-  const URL = "http://fortune-diary.herokuapp.com/";
+  const URL = "http://fortune-diary.herokuapp.com";
 
   //////POST ENTRY
   const createItem = async (reading) => {
